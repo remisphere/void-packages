@@ -1,0 +1,34 @@
+# Template file for 'icon'
+pkgname=icon
+version=9.5.25a
+revision=1
+build_style=configure
+configure_script=make
+if [ "${XBPS_TARGET_LIBC}" = "musl" ]; then
+	configure_args="X-Configure name=linux-musl"
+else
+	configure_args="X-Configure name=linux"
+fi
+disable_parallel_build=1
+make_build_target=All
+make_install_target=Install
+make_check_target=Test
+hostmakedepends="libXpm-devel"
+short_desc="Icon Programming Language"
+maintainer="me"
+license="CC0-1.0"
+homepage="https://www2.cs.arizona.edu/icon/"
+changelog="https://raw.githubusercontent.com/gtownsend/${pkgname}/refs/tags/v${version}/doc/relnotes.htm"
+distfiles="https://github.com/gtownsend/${pkgname}/archive/refs/tags/v${version}.tar.gz"
+checksum=ab15b7fc5a96e8b4da1b76cc6c7935400879f8a54b0fcf94a947c02815f21006
+
+# icont -P 'procedure main(); writes("Hello, World!"); end'
+# post_build() {
+# 	exit 1
+# 	file bin/icont
+# 	aarch64-linux-gnu-strip --strip-unneeded bin/icont
+# }
+
+# post_install() {
+# 	exit 1
+# }
